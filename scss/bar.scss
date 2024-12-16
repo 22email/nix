@@ -1,0 +1,188 @@
+$min-size: 28px;
+
+@mixin bar-label {
+  padding: 0 0.8em;
+  background: $base01;
+  color: $base05;
+}
+
+@mixin bar-button {
+  @include bar-label();
+
+  &:hover {
+    background: $base02;
+  }
+}
+
+@mixin square-label($size) {
+  @include bar-label();
+
+  padding: 0;
+  min-width: $size;
+  min-height: $size;
+}
+
+.bar {
+  .cbox {
+    background: $base00;
+    border: 2px solid $base01;
+    padding: pxToRem(4px) pxToRem(8px) pxToRem(4px) pxToRem(8px);
+  }
+
+  button {
+    @include bar-button();
+  }
+
+  .nc-button {
+    @include square-label($size: pxToRem($min-size));
+  }
+
+  .workspaces>button {
+    @include square-label($size: pxToRem($min-size));
+
+    background: transparent;
+    color: $base03;
+
+    &.occupied {
+      color: $base05;
+    }
+
+    &.active {
+      color: $base01;
+      background: $base0D;
+    }
+
+    &:hover {
+      background: $base02;
+    }
+  }
+
+  .clock {
+    .icon {
+      @include square-label(pxToRem(28px));
+      color: $base01;
+      background: $base0D;
+
+      // You'll never get it .
+      label {
+        font-size: 10px;
+        margin-top: 2px;
+        margin-left: 2px;
+      }
+    }
+
+    .info {
+      @include bar-label();
+    }
+  }
+
+  .battery-label {
+    @include bar-label();
+
+    .battery-bulb {
+      background: $base05;
+      margin: 0.8em 0;
+    }
+
+    levelbar {
+      trough {
+        border: 1px solid $base05;
+        padding: 1px;
+        margin: 0.5em 0;
+
+        block.filled {
+          background: $base05;
+        }
+      }
+    }
+
+    &.charging {
+      levelbar {
+        trough {
+          block.filled {
+            background: $base0B;
+          }
+        }
+      }
+    }
+
+    .battery-flash {
+      color: $base05;
+      font-size: 10px;
+    }
+  }
+
+  .tray {
+    background: $base01;
+
+    .tray-items>box {
+      min-width: pxToRem($min-size);
+
+      button {
+        @include square-label($size: pxToRem($min-size));
+        background: transparent;
+      }
+    }
+
+    .tray-button {
+      padding: 0 0.35em;
+
+      icon {
+        color: $base05;
+        font-size: 10px;
+        transition: all 0.2s cubic-bezier(1, 1, 1, 1);
+
+        &.showing {
+          -gtk-icon-transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  .speaker {
+    .icon {
+      @include square-label(pxToRem(28px));
+      color: $base01;
+      background: $base0D;
+
+      // You'll never get it .
+      label {
+        font-size: 10px;
+        margin-top: 2px;
+        margin-left: 2px;
+      }
+    }
+
+    .info {
+      @include bar-label();
+    }
+  }
+
+  .network {
+    .icon {
+      @include square-label(pxToRem(28px));
+      color: $base01;
+      background: $base0D;
+
+      // You'll never get it .
+      label {
+        font-size: 10px;
+        margin-top: 2px;
+        margin-left: 1px;
+      }
+    }
+
+    .info {
+      @include bar-label();
+    }
+  }
+
+  .nc-button {
+
+    // You'll never get it .
+    label {
+      font-size: 10px;
+      margin-top: 2px;
+    }
+  }
+}

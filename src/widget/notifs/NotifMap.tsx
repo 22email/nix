@@ -1,0 +1,87 @@
+// Copied from https://github.com/Aylur/astal/tree/main/examples
+
+import { Gtk } from "astal/gtk3";
+import Notifd from "gi://AstalNotifd";
+import { NotifWidget } from "./NotifWidget";
+import { type Subscribable } from "astal/binding";
+import { Variable, timeout } from "astal";
+
+const NOTIF_TRANSITION_DURATION = 300;
+
+export const WIDTH = 280;
+
+export class NotifMap implements Subscribable {
+  private map: Map<number, Gtk.Widget> = new Map();
+  private var: Variable<Array<Gtk.Widget>> = Variable([]);
+
+  private notifiy() {
+    this.var.set([...this.map.values()].reverse());
+  }
+
+  constructor(notifCentre = false) {
+    const notifd = Notifd.get_default();
+
+    // :(
+    if (notifCentre) {
+      notifd.get_notifications().map((n) => {
+        this.set(
+          n.id,
+          NotifWidget({
+            notif: n,
+            setup: () => {},
+          }),
+        );
+      });
+    }
+
+    notifd.connect("notified", (_, id) => {
+      const notif = notifd.get_notification(id)!;
+
+      const expire =
+        notif.get_expire_timeout() > 0
+          ? notif.get_expire_timeout() * 1000
+          : 3000;
+
+      // Deserves a nobel prize
+      const setup = notifCentre
+        ? () => {}
+        : () =>
+            timeout(expire, () => {
+              this.delete(id);
+            });
+
+      this.set(
+        id,
+        NotifWidget({
+          notif: notif,
+          setup: setup,
+        }),
+      );
+    });
+
+    notifd.connect("resolved", (_, id) => {
+      this.delete(id);
+    });
+  }
+
+  private set(key: number, value: Gtk.Widget) {
+    // in case of replacecment destroy previous widget
+    this.map.get(key)?.destroy();
+    this.map.set(key, value);
+    this.notifiy();
+  }
+
+  private delete(key: number) {
+    this.map.get(key)?.destroy();
+    this.map.delete(key);
+    this.notifiy();
+  }
+
+  get() {
+    return this.var.get();
+  }
+
+  subscribe(callback: (list: Array<Gtk.Widget>) => void) {
+    return this.var.subscribe(callback);
+  }
+}

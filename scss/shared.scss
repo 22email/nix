@@ -1,0 +1,66 @@
+@mixin color-hover($bg-color) {
+  $hover-bg: if(lightness($bg-color) > 50%,
+      darken($bg-color, 10%),
+      lighten($bg-color, 10%));
+
+  &:hover {
+    background-color: $hover-bg;
+  }
+}
+
+@mixin color-button($bg-color) {
+
+  color: $base01;
+  background: $bg-color;
+  @include color-hover($bg-color);
+}
+
+// https://dev.to/nikolab/convert-px-to-rem-using-sass-3-methods-4ep2
+@function pxToRem($pxValue) {
+    @return math.div($pxValue, 16px) * 1rem;
+}
+
+* {
+  &:not(separator) {
+    all: unset;
+  }
+
+  &:not(icon) {
+    font-family: "tamzen", "Siji";
+    font-size: 14px;
+  }
+
+  button {
+    transition: all 0.8s cubic-bezier(0.17, 0.67, 0.24, 1.46);
+  }
+}
+
+menu {
+  border: 2px solid $base01;
+  background: $base00;
+  padding: 0.8em;
+
+  separator {
+    background: $base03;
+  }
+
+  menuitem {
+    padding: 0.5em;
+    color: $base05;
+
+    &:hover {
+      background: $base02;
+    }
+  }
+}
+
+tooltip {
+  background: $base00;
+  border: 2px solid $base01;
+  color: $base05;
+
+  // ???
+  label {
+    margin: 0.5em;
+  }
+}

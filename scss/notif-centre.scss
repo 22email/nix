@@ -1,0 +1,32 @@
+window#notif-centre {
+  background: transparent;
+
+  .nc {
+    background: $base00;
+    margin: 12px;
+    border: 2px solid $base01;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.36);
+
+    .nc-header {
+      color: $base05;
+      padding: 0.7em;
+      background: $base01;
+
+      .clear-button {
+        @include color-button($base08);
+        label {
+          margin-top: 1px;
+          font-size: 10px;
+        }
+      }
+    }
+
+    scrollbar {
+      background: none;
+    }
+
+    .no-notifs {
+      color: $base05;
+    }
+  }
+}

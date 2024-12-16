@@ -1,0 +1,53 @@
+window#app-launcher {
+  background: transparent;
+
+  .launcher-box {
+    background: $base00;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.36);
+    border: 2px solid $base01;
+    margin: 12px;
+
+    .power-menu {
+      background: $base01;
+      padding: 0.7em;
+      color: $base05;
+
+      .lock {
+        @include color-button($base0B);
+      }
+
+      .poff {
+        @include color-button($base08);
+      }
+    }
+
+    .apps {
+      margin: pxToRem(12px);
+
+      scrollbar {
+        background: none;
+      }
+
+      .app-item {
+        padding-left: 0.7em;
+        color: $base05;
+
+        &:focus {
+          background: $base0D;
+          color: $base00;
+        }
+
+        &:hover {
+          background: $base02;
+        }
+      }
+    }
+
+    .search-entry {
+      padding-left: 0.7em;
+      background: $base01;
+      color: $base05;
+      caret-color: $base05;
+    }
+  }
+}
