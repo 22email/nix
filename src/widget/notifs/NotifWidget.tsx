@@ -1,4 +1,5 @@
 import AstalNotifd from "gi://AstalNotifd";
+import { idle } from "astal";
 import { Gtk, Astal } from "astal/gtk3";
 import GLib from "gi://GLib";
 
@@ -24,11 +25,12 @@ const time = (time: number, format = "%H:%M") =>
 
 type Props = {
   setup(self: Gtk.EventBox): void;
+  transition: number;
   notif: AstalNotifd.Notification;
 };
 
 export function NotifWidget(notifWidgetProps: Props) {
-  const { notif, setup } = notifWidgetProps;
+  const { notif, transition, setup } = notifWidgetProps;
 
   const Title = (
     <label
@@ -89,7 +91,7 @@ export function NotifWidget(notifWidgetProps: Props) {
       </box>
     ) : null;
 
-  return (
+  const NotifInner = (
     <eventbox setup={setup} onClick={() => notif.dismiss()}>
       <box className={`notification ${notif.urgency}`} vertical={true}>
         {Header}
@@ -107,4 +109,19 @@ export function NotifWidget(notifWidgetProps: Props) {
       </box>
     </eventbox>
   );
+
+  const RevealerWrapper = (
+    <revealer
+      transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
+      revealChild={false}
+      transitionDuration={transition}
+      child={NotifInner}
+    />
+  );
+
+  idle(() => {
+    (RevealerWrapper as Gtk.Revealer).revealChild = true;
+  });
+
+  return RevealerWrapper;
 }

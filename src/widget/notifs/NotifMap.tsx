@@ -14,7 +14,7 @@ export class NotifMap implements Subscribable {
   private map: Map<number, Gtk.Widget> = new Map();
   private var: Variable<Array<Gtk.Widget>> = Variable([]);
 
-  private notifiy() {
+  private notify() {
     this.var.set([...this.map.values()].reverse());
   }
 
@@ -28,6 +28,7 @@ export class NotifMap implements Subscribable {
           n.id,
           NotifWidget({
             notif: n,
+            transition: NOTIF_TRANSITION_DURATION,
             setup: () => {},
           }),
         );
@@ -54,6 +55,7 @@ export class NotifMap implements Subscribable {
         id,
         NotifWidget({
           notif: notif,
+          transition: NOTIF_TRANSITION_DURATION,
           setup: setup,
         }),
       );
@@ -68,13 +70,23 @@ export class NotifMap implements Subscribable {
     // in case of replacecment destroy previous widget
     this.map.get(key)?.destroy();
     this.map.set(key, value);
-    this.notifiy();
+    this.notify();
   }
 
   private delete(key: number) {
-    this.map.get(key)?.destroy();
-    this.map.delete(key);
-    this.notifiy();
+    const notif = this.map.get(key);
+
+    if (notif == null) return;
+
+    const revealerWrapper = notif as Gtk.Revealer;
+
+    revealerWrapper.revealChild = false;
+
+    timeout(NOTIF_TRANSITION_DURATION, () => {
+      notif.destroy();
+      this.map.delete(key);
+      this.notify();
+    });
   }
 
   get() {

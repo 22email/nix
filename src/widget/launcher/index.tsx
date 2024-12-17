@@ -1,5 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3";
 import Apps from "gi://AstalApps";
+import { PopupWindow, togglePopupWindow } from "../PopupWindow";
 
 export const WINDOW_NAME = "app-launcher";
 
@@ -9,7 +10,7 @@ function ApplicationItem(application: Apps.Application) {
       className="app-item"
       heightRequest={32}
       onClicked={() => {
-        App.toggle_window(WINDOW_NAME);
+        togglePopupWindow(WINDOW_NAME);
         application.launch();
       }}
     >
@@ -47,7 +48,7 @@ function InnerLauncher({ width, height, spacing }: InnerProps) {
   function launch() {
     for (const application of applicationMap.keys()) {
       if (applicationMap.get(application)?.visible) {
-        App.toggle_window(WINDOW_NAME);
+        togglePopupWindow(WINDOW_NAME);
         application.launch();
         return;
       }
@@ -96,12 +97,11 @@ function InnerLauncher({ width, height, spacing }: InnerProps) {
 
 export default function Launcher() {
   return (
-    <window
+    <PopupWindow
       name={WINDOW_NAME}
-      application={App}
+      transition={Gtk.RevealerTransitionType.CROSSFADE}
       keymode={Astal.Keymode.EXCLUSIVE}
       monitor={0}
-      visible={false}
       onKeyPressEvent={(_, event) => {
         const keyVal = event.get_keyval()[1];
         if (keyVal === Gdk.KEY_Escape) {
@@ -112,6 +112,6 @@ export default function Launcher() {
       <box>
         <InnerLauncher width={256} height={280} spacing={8} />
       </box>
-    </window>
+    </PopupWindow>
   );
 }

@@ -1,0 +1,24 @@
+@use "sass:math";
+@import "./scss/colors.scss";
+
+* {
+  &:not(separator) {
+    all: unset;
+  }
+
+  &:not(icon) {
+    font-family: "tamzen", "Siji";
+    font-size: 14px;
+  }
+
+  button {
+    transition: all 0.8s cubic-bezier(0.17, 0.67, 0.24, 1.46);
+  }
+}
+
+@import "./scss/shared.scss";
+@import "./scss/bar.scss";
+@import "./scss/notif-centre.scss";
+@import "./scss/notif.scss";
+@import "./scss/launcher.scss";
+

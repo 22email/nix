@@ -5,31 +5,24 @@ import SysTray from "./components/SysTray";
 import Clock from "./components/Clock";
 import BatteryLevel from "./components/Battery";
 import Indicators from "./components/Indicators";
+import NotifCentreButton from "./components/NotifCentreButton";
 
 function BarStart() {
   return (
-    <box halign={Gtk.Align.START} spacing={8} hexpand={true}>
+    <box halign={Gtk.Align.START} spacing={8}>
       <Workspaces />
     </box>
   );
 }
 
 function BarEnd() {
-  const NotifCentreButton = (
-    <button
-      className={"nc-button"}
-      onClicked={() => App.toggle_window("notif-centre")}
-    >
-      <label label={""} />
-    </button>
-  );
   return (
     <box halign={Gtk.Align.END} spacing={8}>
       <SysTray />
       <Clock />
       <Indicators />
       <BatteryLevel />
-      {NotifCentreButton}
+      <NotifCentreButton />
     </box>
   );
 }
@@ -47,14 +40,14 @@ export default function Bar(monitor: Gdk.Monitor) {
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={anchor}
+      marginRight={200}
+      marginLeft={200}
       heightRequest={12}
     >
       <centerbox
         className="cbox"
         spacing={8}
-        expand={false}
-        widthRequest={900}
-        halign={Gtk.Align.CENTER}
+        expand
         startWidget={BarStart()}
         endWidget={BarEnd()}
       ></centerbox>

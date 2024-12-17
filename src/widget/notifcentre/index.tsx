@@ -1,7 +1,8 @@
-import { Gtk, Astal, App, Gdk } from "astal/gtk3";
+import { Gtk, Astal } from "astal/gtk3";
 import { bind } from "astal";
 import { WIDTH, NotifMap } from "../notifs/NotifMap";
 import AstalNotifd from "gi://AstalNotifd";
+import { PopupWindow } from "../PopupWindow";
 
 function NC() {
   const notifs = new NotifMap(true);
@@ -57,8 +58,6 @@ function NC() {
             widthRequest={24}
             halign={Gtk.Align.END}
             onClick={() => {
-              print("hi");
-
               const notifs = notifd.get_notifications();
 
               for (const n of notifs) {
@@ -83,23 +82,18 @@ function NC() {
 }
 
 export default function NotifCentre() {
-  const anchor = Astal.WindowAnchor.BOTTOM;
+  const anchor = Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.RIGHT;
 
   return (
-    <window
+    <PopupWindow
       name="notif-centre"
-      application={App}
       anchor={anchor}
+      marginRight={188}
+      transition={Gtk.RevealerTransitionType.SLIDE_UP}
       keymode={Astal.Keymode.ON_DEMAND}
       visible={false}
-      onKeyPressEvent={(_, event) => {
-        const keyVal = event.get_keyval()[1];
-        if (keyVal === Gdk.KEY_Escape) {
-          App.toggle_window("notif-centre");
-        }
-      }}
     >
       <NC />
-    </window>
+    </PopupWindow>
   );
 }
