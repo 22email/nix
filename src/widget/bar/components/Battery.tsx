@@ -24,7 +24,7 @@ export default function BatteryLevel() {
         <box className={"battery-bulb"} widthRequest={2} />
         <levelbar
           value={bind(bat, "percentage").as((p) => (p > 0 ? p : 0))}
-          widthRequest={20}
+          widthRequest={25}
           inverted={true}
         />
       </box>
