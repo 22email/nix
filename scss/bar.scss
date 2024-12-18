@@ -1,4 +1,4 @@
-$min-size: 28px;
+$min-size: 24px;
 
 @mixin bar-label {
   padding: 0 0.8em;
@@ -131,7 +131,7 @@ $min-size: 28px;
 
   .speaker {
     .icon {
-      @include square-label(pxToRem(28px));
+      @include square-label(pxToRem($min-size));
       color: $base01;
       background: $base0D;
 
@@ -150,7 +150,7 @@ $min-size: 28px;
 
   .network {
     .icon {
-      @include square-label(pxToRem(28px));
+      @include square-label(pxToRem($min-size));
       color: $base01;
       background: $base0D;
 
@@ -172,6 +172,7 @@ $min-size: 28px;
     @include color-button($base08);
 
     label {
+      margin-top: 1px;
       font-size: 10px;
     }
   }
