@@ -10,7 +10,7 @@ export function NetworkIcon() {
       case Network.Primary.WIFI:
         return <label label={""} widthChars={4} />;
       case Network.Primary.WIRED:
-        return <label label={""} widthChars={4} />;
+        return <label label={""} widthChars={4} css={"margin-left: 2px;"} />;
       default:
         return <label label={""} widthChars={4} />;
     }

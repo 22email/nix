@@ -6,6 +6,7 @@ import Clock from "./components/Clock";
 import BatteryLevel from "./components/Battery";
 import Indicators from "./components/Indicators";
 import NotifCentreButton from "./components/NotifCentreButton";
+import PowerButton from "./components/PowerButton";
 
 function BarStart() {
   return (
@@ -30,6 +31,7 @@ function BarEnd() {
       <SysTray />
       <BatteryLevel />
       <Indicators />
+      <PowerButton />
     </box>
   );
 }

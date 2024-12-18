@@ -27,7 +27,7 @@ export default function Header() {
           widthRequest={24}
           halign={Gtk.Align.END}
         >
-          <label label={""} />
+          <label label={""} />
         </button>
       }
     />

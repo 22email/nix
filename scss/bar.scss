@@ -35,6 +35,31 @@ $min-size: 28px;
 
   .nc-button {
     @include square-label($size: pxToRem($min-size));
+
+    // You'll never get it .
+    label {
+      font-size: 10px;
+      margin-top: 2px;
+    }
+  }
+
+  .clock {
+    .icon {
+      @include square-label(pxToRem(28px));
+      color: $base01;
+      background: $base0D;
+
+      // You'll never get it .
+      label {
+        font-size: 10px;
+        margin-top: 2px;
+        margin-left: 2px;
+      }
+    }
+
+    .info {
+      @include bar-label();
+    }
   }
 
   .workspaces>button {
@@ -56,22 +81,30 @@ $min-size: 28px;
     }
   }
 
-  .clock {
-    .icon {
-      @include square-label(pxToRem(28px));
-      color: $base01;
-      background: $base0D;
+  .tray {
+    background: $base01;
 
-      // You'll never get it .
-      label {
-        font-size: 10px;
-        margin-top: 2px;
-        margin-left: 2px;
+    .tray-items>box {
+      min-width: pxToRem($min-size);
+
+      button {
+        @include square-label($size: pxToRem($min-size));
+        background: transparent;
       }
     }
 
-    .info {
-      @include bar-label();
+    .tray-button {
+      padding: 0 0.35em;
+
+      icon {
+        color: $base05;
+        font-size: 10px;
+        transition: all 0.2s cubic-bezier(1, 1, 1, 1);
+
+        &.showing {
+          -gtk-icon-transform: rotate(180deg);
+        }
+      }
     }
   }
 
@@ -108,33 +141,6 @@ $min-size: 28px;
     .battery-flash {
       color: $base05;
       font-size: 10px;
-    }
-  }
-
-  .tray {
-    background: $base01;
-
-    .tray-items>box {
-      min-width: pxToRem($min-size);
-
-      button {
-        @include square-label($size: pxToRem($min-size));
-        background: transparent;
-      }
-    }
-
-    .tray-button {
-      padding: 0 0.35em;
-
-      icon {
-        color: $base05;
-        font-size: 10px;
-        transition: all 0.2s cubic-bezier(1, 1, 1, 1);
-
-        &.showing {
-          -gtk-icon-transform: rotate(180deg);
-        }
-      }
     }
   }
 
@@ -176,12 +182,12 @@ $min-size: 28px;
     }
   }
 
-  .nc-button {
+  .power-button {
+    @include square-label($size: pxToRem($min-size));
+    @include color-button($base08);
 
-    // You'll never get it .
     label {
       font-size: 10px;
-      margin-top: 2px;
     }
   }
 }

@@ -6,6 +6,7 @@ import NotifCentre from "./src/widget/notifcentre";
 
 import { togglePopupWindow } from "./src/widget/PopupWindow";
 import { exec } from "astal/process";
+import PowerMenu from "./src/widget/powermenu";
 
 const style = `${SRC}/style.scss`;
 const target = "/tmp/style.css";
@@ -15,7 +16,6 @@ exec(`sass ${style} ${target}`);
 exec(`sass ${style} ${target}`);
 
 App.start({
-  instanceName: "shell",
   icons: `${SRC}/assets/icons`,
   css: target,
   requestHandler(req, res) {
@@ -31,5 +31,6 @@ App.start({
     Launcher();
     NotificationPopups();
     NotifCentre();
+    PowerMenu();
   },
 });

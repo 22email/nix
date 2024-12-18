@@ -11,7 +11,7 @@
   }
 }
 
-@import '../scss/shared.scss';
+@import "../scss/shared.scss";
 
 .lock-screen {
   background: $base00;
@@ -30,7 +30,7 @@
         @include color-button($base08);
 
         label {
-          margin-top: 2px;
+          margin-right: 1px;
           font-size: 10px;
         }
       }
