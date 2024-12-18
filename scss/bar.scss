@@ -98,14 +98,14 @@ $min-size: 24px;
 
     .battery-bulb {
       background: $base05;
-      margin: 0.8em 0;
+      margin: 9px 0;
     }
 
     levelbar {
       trough {
         border: 1px solid $base05;
         padding: 1px;
-        margin: 0.5em 0;
+        margin: 6px 0;
 
         block.filled {
           background: $base05;
