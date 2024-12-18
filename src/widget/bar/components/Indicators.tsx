@@ -1,6 +1,7 @@
 import Wp from "gi://AstalWp";
 import { bind, Variable } from "astal";
 import { NetworkIcon, NetworkName } from "../../../shared/NetworkUtils";
+import { Gtk } from "astal/gtk3";
 
 export default function Indicators() {
   const speaker = Wp.get_default()?.audio.defaultSpeaker!;
@@ -26,12 +27,15 @@ export default function Indicators() {
         }}
       >
         <box className={"speaker"}>
-          <box className={"icon"}>
-            <label
-              label={bind(speaker, "mute").as((m) => (m ? " " : ""))}
-              widthChars={4}
-            />
-          </box>
+          <centerbox
+            className={"icon"}
+            center_widget={
+              <label
+                halign={Gtk.Align.CENTER}
+                label={bind(speaker, "mute").as((m) => (m ? " " : ""))}
+              />
+            }
+          />
           <label
             label={bind(speaker, "volume").as(
               (v) => ` ${Math.floor(v * 100)}%`,
@@ -42,7 +46,7 @@ export default function Indicators() {
         </box>
       </eventbox>
       <box className={"network"}>
-        <box className={"icon"}>{NetworkIcon()}</box>
+        <centerbox className={"icon"} centerWidget={NetworkIcon()} />
         {NetworkName()}
       </box>
     </box>
