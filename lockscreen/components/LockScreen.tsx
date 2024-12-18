@@ -53,16 +53,14 @@ export default function LockScreen(lockScreenProps: Props) {
             vexpand={false}
             valign={Gtk.Align.CENTER}
           >
-            <box spacing={8}>
-              <icon icon={"user-available-symbolic"} />
-              <label
-                label={bind(pam, "username")}
-                hexpand
-                halign={Gtk.Align.START}
-              />
-            </box>
+            <label
+              label={bind(pam, "username")}
+              hexpand
+              halign={Gtk.Align.START}
+            />
             <entry
               visibility={false}
+              height_request={40}
               className={"password-entry"}
               placeholderText={"Password ..."}
               onActivate={(self) => {

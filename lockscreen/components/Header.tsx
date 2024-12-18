@@ -5,7 +5,7 @@ import { execAsync } from "astal/process";
 export default function Header() {
   const time = Variable<string>("").poll(
     1000,
-    () => GLib.DateTime.new_now_local().format("%H:%M")!,
+    () => GLib.DateTime.new_now_local().format("%d %b %I:%M %p")!,
   );
 
   return (
@@ -22,6 +22,7 @@ export default function Header() {
       endWidget={
         <button
           onClicked={() => execAsync("systemctl poweroff")}
+          can_focus={false}
           className={"poff"}
           heightRequest={24}
           widthRequest={24}
