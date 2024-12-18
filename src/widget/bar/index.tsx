@@ -10,6 +10,15 @@ import NotifCentreButton from "./components/NotifCentreButton";
 function BarStart() {
   return (
     <box halign={Gtk.Align.START} spacing={8}>
+      <NotifCentreButton />
+      <Clock />
+    </box>
+  );
+}
+
+function BarCenter() {
+  return (
+    <box spacing={8}>
       <Workspaces />
     </box>
   );
@@ -19,10 +28,8 @@ function BarEnd() {
   return (
     <box halign={Gtk.Align.END} spacing={8}>
       <SysTray />
-      <Clock />
-      <Indicators />
       <BatteryLevel />
-      <NotifCentreButton />
+      <Indicators />
     </box>
   );
 }
@@ -40,8 +47,8 @@ export default function Bar(monitor: Gdk.Monitor) {
       gdkmonitor={monitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={anchor}
-      marginRight={200}
-      marginLeft={200}
+      marginRight={100}
+      marginLeft={100}
       heightRequest={12}
     >
       <centerbox
@@ -49,6 +56,7 @@ export default function Bar(monitor: Gdk.Monitor) {
         spacing={8}
         expand
         startWidget={BarStart()}
+        centerWidget={BarCenter()}
         endWidget={BarEnd()}
       ></centerbox>
     </window>
