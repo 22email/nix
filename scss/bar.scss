@@ -48,8 +48,7 @@ $min-size: 28px;
     }
 
     &.active {
-      color: $base01;
-      background: $base0D;
+      @include color-button($base0D);
     }
 
     &:hover {

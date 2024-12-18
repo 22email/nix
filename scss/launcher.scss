@@ -33,8 +33,7 @@ window#app-launcher {
         color: $base05;
 
         &:focus {
-          background: $base0D;
-          color: $base00;
+          @include color-button($base0D);
         }
 
         &:hover {
