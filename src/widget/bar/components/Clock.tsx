@@ -1,6 +1,6 @@
 import { Variable, GLib } from "astal";
 
-export default function Clock({ format = "%H:%M" }) {
+export default function Clock({ format = "%d %b %I:%M %p" }) {
   const time = Variable<string>("").poll(
     1000,
     () => GLib.DateTime.new_now_local().format(format)!,
@@ -8,10 +8,7 @@ export default function Clock({ format = "%H:%M" }) {
 
   return (
     <box className="clock">
-      <box className={"icon"}>
-        <label label={""} widthChars={4} />
-      </box>
-      <label className={"info"} onDestroy={() => time.drop()} label={time()} />
+      <label  onDestroy={() => time.drop()} label={time()} />
     </box>
   );
 }

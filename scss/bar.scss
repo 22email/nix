@@ -44,22 +44,7 @@ $min-size: 28px;
   }
 
   .clock {
-    .icon {
-      @include square-label(pxToRem(28px));
-      color: $base01;
-      background: $base0D;
-
-      // You'll never get it .
-      label {
-        font-size: 10px;
-        margin-top: 2px;
-        margin-left: 2px;
-      }
-    }
-
-    .info {
-      @include bar-label();
-    }
+    color: $base05;
   }
 
   .workspaces>button {

@@ -12,7 +12,7 @@ function BarStart() {
   return (
     <box halign={Gtk.Align.START} spacing={8}>
       <NotifCentreButton />
-      <Clock />
+      <Workspaces />
     </box>
   );
 }
@@ -20,7 +20,7 @@ function BarStart() {
 function BarCenter() {
   return (
     <box spacing={8}>
-      <Workspaces />
+      <Clock />
     </box>
   );
 }
@@ -36,14 +36,14 @@ function BarEnd() {
   );
 }
 
-export default function Bar(monitor: Gdk.Monitor) {
+export default function Bar(monitor: Gdk.Monitor, idx: number) {
   const anchor =
     Astal.WindowAnchor.LEFT |
     Astal.WindowAnchor.BOTTOM |
     Astal.WindowAnchor.RIGHT;
   return (
     <window
-      name={`bar-${monitor}`}
+      name={`bar-${idx}`}
       application={App}
       className="bar"
       gdkmonitor={monitor}
