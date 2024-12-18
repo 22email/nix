@@ -82,13 +82,13 @@ function NC() {
 }
 
 export default function NotifCentre() {
-  const anchor = Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.RIGHT;
+  const anchor = Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT;
 
   return (
     <PopupWindow
       name="notif-centre"
       anchor={anchor}
-      marginRight={188}
+      marginLeft={88}
       transition={Gtk.RevealerTransitionType.SLIDE_UP}
       keymode={Astal.Keymode.ON_DEMAND}
       visible={false}

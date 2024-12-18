@@ -15,7 +15,7 @@ export default function NotificationPopups(monitor = 0) {
     </box>
   );
 
-  const anchor = Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT;
+  const anchor = Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT;
 
   return (
     <window
