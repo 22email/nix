@@ -137,7 +137,7 @@ $min-size: 24px;
 
       // You'll never get it .
       label {
-        margin-top: 1px;
+        margin-top: 2px;
         font-size: 10px;
       }
     }
@@ -172,6 +172,7 @@ $min-size: 24px;
 
     label {
       margin-top: 1px;
+      margin-left: 1px;
       font-size: 10px;
     }
   }

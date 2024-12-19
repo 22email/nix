@@ -24,11 +24,9 @@ export default function Header() {
           onClicked={() => execAsync("systemctl poweroff")}
           can_focus={false}
           className={"poff"}
-          heightRequest={24}
-          widthRequest={24}
           halign={Gtk.Align.END}
         >
-          <label label={""} />
+          <label label={""} />
         </button>
       }
     />

@@ -28,9 +28,12 @@
 
       .poff {
         @include color-button($base08);
+        min-width: pxToRem(24px);
+        min-height: pxToRem(24px);
 
         label {
-          margin-right: 1px;
+          margin-top: 1px;
+          margin-left: 1px;
           font-size: 10px;
         }
       }
