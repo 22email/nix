@@ -47,22 +47,26 @@ $min-size: 24px;
     color: $base05;
   }
 
-  .workspaces>button {
-    @include square-label($size: pxToRem($min-size));
+  .workspaces {
+    background: $base01;
 
-    background: transparent;
-    color: $base03;
+    button {
+      @include square-label($size: pxToRem($min-size));
 
-    &.occupied {
-      color: $base05;
-    }
+      background: transparent;
+      color: $base03;
 
-    &.active {
-      @include color-button($base0D);
-    }
+      &.occupied {
+        color: $base05;
+      }
 
-    &:hover {
-      background: $base02;
+      &.active {
+        @include color-button($base0D);
+      }
+
+      &:hover {
+        background: $base02;
+      }
     }
   }
 

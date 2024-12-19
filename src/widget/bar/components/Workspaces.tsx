@@ -4,7 +4,7 @@ export default function Workspaces() {
   const hypr = Hyprland.get_default();
 
   return (
-    <box className="workspaces" spacing={8}>
+    <box className="workspaces">
       {Array.from({ length: 5 }, (_, i) => i + 1).map((i) => (
         <button
           setup={(self) => {
