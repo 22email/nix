@@ -118,16 +118,6 @@ $min-size: 24px;
       }
     }
 
-    &.charging {
-      levelbar {
-        trough {
-          block.filled {
-            background: $base0B;
-          }
-        }
-      }
-    }
-
     .battery-flash {
       color: $base05;
       font-size: 10px;
